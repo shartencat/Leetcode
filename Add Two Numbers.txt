@@ -1,0 +1,25 @@
+#problem description
+"""
+You are given two non-empty linked lists representing two non-negative integers. 
+The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+Example Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+        Output: 7 -> 0 -> 8
+        Explanation: 342 + 465 = 807.
+"""
+
+#my answer
+class Solution:
+    def addTwoNumbers(self,l1,l2):
+        long_len,sum=max(len(str(l1)),len(str(l2))),0
+        for i in range(long_len):
+            di_l1=l1//10**(long_len-i-1)
+            di_l2=l2//10**(long_len-i-1)
+            di=di_l1+di_l2
+            l1-=di_l1*10**(long_len-i-1)
+            l2-=di_l2*10**(long_len-i-1)
+            sum+=di*10**i
+        return sum
+
+test=Solution()
+test.addTwoNumbers(342,465)
