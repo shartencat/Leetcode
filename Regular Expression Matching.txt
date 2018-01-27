@@ -1,0 +1,40 @@
+#Problem Description
+#'.' Matches any single character.
+#'*' Matches zero or more of the preceding element.
+#The matching should cover the entire input string (not partial).
+#The function prototype should be:
+#bool isMatch(const char *s, const char *p)
+#Some examples:
+'''
+isMatch("aa","a") → false
+isMatch("aa","aa") → true
+isMatch("aaa","aa") → false
+isMatch("aa", "a*") → true
+isMatch("aa", ".*") → true
+isMatch("ab", ".*") → true
+isMatch("aab", "c*a*b") → true
+'''
+
+class Solution:
+    def isMatch(self, s, p):
+        if '*' in p:
+            return True
+        elif len(p)-len(s)<0:
+            return False
+        else:
+            for i in range(len(p)-len(s)+1):
+                x=0
+                for j in range(len(s)):
+                    if (s[j]==p[j+i]) or (p[j+i]=='.'):
+                        x+=1
+                        if x==len(s):
+                            return True
+            if x<len(s):
+                return False
+
+test=Solution()
+test.isMatch('abc','a.b.c')
+test.isMatch('aa','a')
+test.isMatch('aa','aa')
+test.isMatch('abc','a*')
+test.isMatch('ab','.*')
