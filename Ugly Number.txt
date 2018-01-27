@@ -1,0 +1,23 @@
+#Write a program to check whether a given number is an ugly number. 
+#Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+#For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7. 
+#Note that 1 is typically treated as an ugly number. 
+
+class Solution:
+    def UglyNumber(self,s):
+        while (s/2==s//2)or(s/3==s//3)or(s/5==s//5):
+            if s/2==s//2:
+                s//=2
+            if s/3==s//3:
+                s//=2
+            if s/5==s//5:
+                s//=5
+        if s==1:
+            return 'Ugly Number'
+        else:
+            return 'Not Ugly Number'
+
+test=Solution()
+test.UglyNumber(1)
+test.UglyNumber(60)
+test.UglyNumber(28)
