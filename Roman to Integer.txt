@@ -1,0 +1,23 @@
+class Solution:
+    def romanToInt(self, s):
+        strs=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']
+        nums=[1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        num,i=0,0
+        while s!='':
+            if strs[i]==s[0:i%2+1]:
+                num+=nums[i]
+                s=s[i%2+1:]
+            if s==s[i%2+1:]:
+                return num
+            if strs[i]!=s[0:i%2+1]:
+                i+=1
+
+test=Solution()
+test.romanToInt('M')
+test.romanToInt('VI')
+test.romanToInt('XVII')
+test.romanToInt('LXXIV')
+test.romanToInt('MMMDCCXIX')
+test.romanToInt('CCLXXX')
+test.romanToInt('CLXXVI')
+test.romanToInt('DXIII')
