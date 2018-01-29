@@ -1,0 +1,23 @@
+#problem description:
+#Given an integer, convert it to a roman numeral.
+#Input is guaranteed to be within the range from 1 to 3999.
+
+class Solution:
+    def intToRoman(self, num):
+        strs=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']
+        nums=[1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        s=''
+        for i in range(13):
+            x=num//nums[i]
+            num-=x*nums[i]
+            s+=x*strs[i]
+        return s
+
+test=Solution()
+test.intToRoman(6)
+test.intToRoman(17)
+test.intToRoman(74)
+test.intToRoman(3719)
+test.intToRoman(280)
+test.intToRoman(176)
+test.intToRoman(513)
