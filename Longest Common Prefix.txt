@@ -1,0 +1,13 @@
+#Write a function to find the longest common prefix string amongst an array of strings. 
+
+class Solutioin:
+    def longestCommonPrefix(self,s):
+        for i in range(len(s)-1):
+            x=min(len(s[i]),len(s[i+1]))
+        for j in range(x):
+            for k in range(len(s)-1):
+                if s[k][j]!=s[k+1][j]:
+                    return s[0][:j]
+
+test=Solutioin()
+test.longestCommonPrefix(['cmd-123','cmd-iddn','cmd-jwjwd'])
