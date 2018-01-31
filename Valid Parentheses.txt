@@ -1,0 +1,45 @@
+#Given a string containing just the characters '(', ')', '{', '}', '[' and ']',
+#determine if the input string is valid.
+#The brackets must close in the correct order,
+#"()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+
+class Solution:
+    def isValid(self, s):
+        kvmap={'(':1,')':-1,'[':2,']':-2,'{':3,'}':-3}
+        nums=[]
+        for k in s:
+            nums.append(kvmap[k])
+        while len(nums)>0:
+            for i in range(len(nums)):
+                if (nums[0]<0)or(len(nums)==1):
+                    return 'invalid'
+                elif nums[i]<0:
+                    if nums[i]+nums[i-1]!=0: 
+                        return 'invalid'
+                    else: 
+                        nums=nums[:i-1]+nums[i+1:]
+                        break
+        return 'Valid'
+
+test=Solution()
+test.isValid('{([][()])}')
+test.isValid('{([[()])}')
+test.isValid('{([][())}')
+
+#the following is an answer presented in Leetcode-Discussion by Greg Biles
+#it is much neater than mine
+
+class Solution:
+    def isValid(self, s):
+        delta=len(s)
+        while (len(s)!=0 and len(s)%2==0):
+            s=s.replace('()','')
+            s=s.replace('[]','')
+            s=s.replace('{}','')
+            delta=len(s) if delta>len(s) else 0
+        return len(s)==0
+
+test=Solution()
+test.isValid('{([][()])}')
+test.isValid('{([[()])}')
+test.isValid('{([][())}')
