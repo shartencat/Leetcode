@@ -1,0 +1,46 @@
+#https://leetcode.com/problems/zigzag-conversion/description/
+
+class Solution:
+    def convert(self,s,numRows):
+        pos_coordi,ZZ_ed={},''
+        for i in range(len(s)):             #将原来的字符串写成z型，取坐标，并以坐标值为key,其位置的str为value
+            cyc=i//(2*numRows-2)            #2s-2个数为一周期，cyc表第几周期
+            if (i-(2*numRows-2)*cyc)//numRows==0:  #在竖线上时的情况
+                col=cyc*(numRows-1)         #col表示在第几列
+                row=i%(2*numRows-2)         #row表示在第几行
+            else:
+                col=cyc*(numRows-1)+(i-(2*numRows-2)*cyc)%numRows+1
+                row=numRows-2-(i-(2*numRows-2)*cyc)%numRows
+            pos_coordi['%s%s'%(col,row)]=s[i]
+        for j in range(numRows):
+            for k in range(col+1):
+                for key in pos_coordi:
+                    if (int(key[0])==k and int(key[1])==j):   #先横后竖，按顺序检索，存在匹配的就加到最后的结果中
+                        ZZ_ed+=pos_coordi[key]
+                        break
+        return ZZ_ed
+
+test=Solution()
+test.convert('0',3)
+test.convert('012345',3)
+test.convert('abcdefghijklm',4)
+
+#the following is provided in Leetcode-Discussion by pharrellyhy
+class Solution(object):
+    def convert(self, s, numRows):
+        if numRows==1 or numRows>=len(s):
+            return s
+        index,step=0,1
+        L=['']*numRows
+        for x in s:
+            L[index]+=x
+            if index==0:
+                step=1
+            elif index==numRows-1:
+                step=-1
+            index+=step
+        L=''.join(L)
+        return L
+
+test=Solution()
+test.convert('abcdefghi',4)
