@@ -1,0 +1,27 @@
+'''
+Given a string and a string dictionary, find the longest string in the dictionary 
+that can be formed by deleting some characters of the given string. 
+If there are more than one possible results, return the longest word with the smallest lexicographical order.
+If there is no possible result, return the empty string. 
+'''
+class Solution:
+    def findLongestWord(self, s, d):
+        s_d,x,long_word=[],0,''
+        for d_str in d:
+            tmp_s_d=''
+            if (s_d!=[] and s_d[0][0]!=d_str[0]):   #if there is match dont check next lexicographical order
+                break
+            for letter in d_str:                    #whether letters match
+                if letter in s:
+                    tmp_s_d+=letter
+            if tmp_s_d==d_str:                      #whether string match
+                s_d+=[tmp_s_d]
+        for eff_str in s_d:                         #find the longest
+            if len(eff_str)>x:
+                x=len(eff_str)
+                long_word=eff_str
+        return long_word
+
+test=Solution()
+test.findLongestWord("abpcplea",["ale","apple",'applea',"monkey","bpcplea"])
+test.findLongestWord("abpcplea",["a","b","c"])
