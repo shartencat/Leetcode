@@ -1,0 +1,20 @@
+'''
+Given an array of n integers where n > 1, nums, return an array output such that 
+output[i] is equal to the product of all the elements of nums except nums[i].
+Solve it without division and in O(n).
+For example, given [1,2,3,4], return [24,12,8,6]. 
+'''
+
+class Solution:
+    def productExceptSelf(self, nums):
+        product_list,tmp=[nums[0]],[]
+        for i in range(len(nums)-1):
+            for pl in product_list:
+                tmp+=[pl*nums[i+1]]
+            product_list+=tmp
+        product_list=list(set(product_list))
+        product_list=list(filter(lambda x: x not in nums,product_list))
+        return product_list
+
+test=Solution()
+test.productExceptSelf([1,2,3,4,5])
