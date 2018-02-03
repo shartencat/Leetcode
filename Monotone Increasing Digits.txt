@@ -1,0 +1,24 @@
+'''
+Given a non-negative integer N, find the largest number 
+that is less than or equal to N with monotone increasing digits. 
+(Recall that an integer has monotone increasing digits if and 
+only if each pair of adjacent digits x and y satisfy x <= y.) 
+'''
+class Solution:
+    def monotoneIncreasingDigits(self, N):
+        for i in range(N,-1,-1):
+            n,str_i=len(str(i)),str(i)
+            x=0
+            if n==1:
+                return i
+            for j in range(len(str_i)-1):
+                if str_i[j]<=str_i[j+1]:
+                    x+=1
+            if x==len(str_i)-1:
+                return i
+
+test=Solution()
+test.monotoneIncreasingDigits(10)
+test.monotoneIncreasingDigits(3)
+test.monotoneIncreasingDigits(310)
+test.monotoneIncreasingDigits(123)
