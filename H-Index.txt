@@ -1,0 +1,25 @@
+#https://leetcode.com/problems/h-index/description/
+class Solution:
+    def hIndex(self, citations):
+        h_list=[]
+        for tmp_h in citations:
+            x,y=0,0
+            for i in range(len(citations)):
+                if citations[i]>=tmp_h:
+                    x+=1
+                if citations[i]<=tmp_h:
+                    y+=1
+            if (x>=tmp_h and y>=len(citations)-tmp_h):
+                h_list+=[tmp_h]
+        if h_list==[]:
+            return None
+        else:
+            return max(h_list)
+
+test=Solution()
+test.hIndex([3,0,6,1,5])
+test.hIndex([2,4,3,0,6,1,5,9])
+test.hIndex([2,3,4,5,6,6])
+test.hIndex([0])
+test.hIndex([])
+test.hIndex([7,8,9])
