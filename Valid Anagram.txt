@@ -1,0 +1,24 @@
+'''
+Given two strings s and t, write a function to determine if t is an anagram of s.
+For example,
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false. 
+'''
+class Solution:
+    def isAnagram(self,s,t):
+        if len(s)!=len(t):
+            return False
+        list_s,list_t=[],[]
+        for i in range(len(s)):
+            list_s+=s[i]
+            list_t+=t[i]
+        list_s.sort()
+        list_t.sort()
+        if list_s==list_t:
+            return True
+        return False
+
+test=Solution()
+test.isAnagram('car','rat')
+test.isAnagram('ilovepython','lovpythonei')
+test.isAnagram('ilovepython','lovpythone')
