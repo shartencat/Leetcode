@@ -1,0 +1,27 @@
+'''
+We are given an array asteroids of integers representing asteroids in a row. 
+For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed. 
+Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet. 
+'''
+class Solution:
+    def asteriodCollision(self,asteriods):
+        i=0
+        while i<len(asteriods)-1:
+            if asteriods[i]>0 and asteriods[i+1]<0:
+                if asteriods[i]+asteriods[i+1]==0:
+                    asteriods=asteriods[:i]+asteriods[i+2:]
+                elif asteriods[i]+asteriods[i+1]>0:
+                   asteriods=asteriods[:i+1]+asteriods[i+2:]
+                else:
+                   asteriods=asteriods[:i]+asteriods[i+i:]
+                i=0
+            else:
+                i+=1
+        return asteriods
+
+test=Solution()
+test.asteriodCollision([-3,1,-4,-3,2,6,-5,-4,4])
+test.asteriodCollision([10,2,-5])
+test.asteriodCollision([-2,-1,1,2])
+test.asteriodCollision([8,-8])
+
