@@ -1,0 +1,18 @@
+#Given a non-empty array of strings, return the k most frequent elements.
+class Solution:
+    def topKFrequent(self, nums, k):
+        valid_nums,set_nums=[],{}
+        for x in nums:
+            if x not in valid_nums:
+                valid_nums+=x
+        for y in valid_nums:
+            n=0
+            for z in nums:
+                if y==z:
+                    n+=1
+            set_nums[y]=n
+        set_nums=sorted(set_nums.keys())
+        return set_nums[:k]
+
+test=Solution()
+test.topKFrequent(['a','a','a','c','b','b'],2)
