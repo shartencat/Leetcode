@@ -1,0 +1,18 @@
+#Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.
+class Solution:
+    def findLength(self, A, B):
+        c=[]
+        for i in range(len(A)):
+            for j in range(len(B)):
+                if A[i]==B[j]:
+                    for k in range(min(len(A)-i,len(B)-j)):
+                        if A[i+k]!=B[j+k]:
+                            c+=[k]
+                            break
+        if c==[]:
+            return 0
+        return max(c)
+
+test=Solution()
+test.findLength([1,2,3,2,1,7],[3,2,1,4,7])
+test.findLength([10,20,30],[3,2,1,4,7])
